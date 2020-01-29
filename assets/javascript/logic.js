@@ -32,14 +32,25 @@ $("#submit").on("click", function (event) {
     var role = $("#roleInput").val().trim();
     var startDate = $("#startDateInput").val().trim();
     var monthlyRate = $("#ropInput").val().trim();
+    console.log(name);
+    console.log(role);
+    console.log(startDate);
+    console.log(monthlyRate);
     database.ref().set({
         name: name,
         role: role,
         startDate: startDate,
         monthlyRate: monthlyRate,
-        // dateAdded: timestamp.database.ServerValue.TIMESTAMP
+        
+        dateAdded: timestamp.database.ServerValue.TIMESTAMP
       });
 })
+// function monthsWorked() {
+    
+//     database.ref().on("value", function(snapshot) {
+//         startDate = moment().unix(DateAdded)
+//     })
+}
 database.ref().orderByChild("dateAdded").limitToLast(5).on("child_added", function(childSnapshot){
     console.log(childSnapshot)
 },
