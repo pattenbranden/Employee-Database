@@ -36,7 +36,8 @@ $("#submit").on("click", function (event) {
         name: name,
         role: role,
         startDate: startDate,
-        monthlyRate: monthlyRate
+        monthlyRate: monthlyRate,
+        dateAdded: timestamp.database.ServerValue.TIMESTAMP
       });
 })
 database.ref().on("child_added", function(childSnapshot){},{})
