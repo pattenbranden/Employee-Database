@@ -42,14 +42,14 @@ $("#submit").on("click", function (event) {
         startDate: startDate,
         monthlyRate: monthlyRate,
         
-        dateAdded: timestamp.database.ServerValue.TIMESTAMP
+        // dateAdded: timestamp.database.ServerValue.TIMESTAMP
       });
 })
-// function monthsWorked() {
+function monthsWorked() {
     
-//     database.ref().on("value", function(snapshot) {
-//         startDate = moment().unix(DateAdded)
-//     })
+    database.ref().on("value", function(snapshot) {
+        startDate = moment().unix(DateAdded)
+    })
 }
 database.ref().orderByChild("dateAdded").limitToLast(5).on("child_added", function(childSnapshot){
     console.log(childSnapshot)
