@@ -1,4 +1,4 @@
-
+$( document ).ready( function() {
 var firebaseConfig = {
     apiKey: "AIzaSyCwJ4l3bj7gwKZV9HesoNMQHX_ES4mWie8",
     authDomain: "service-storage-dc859.firebaseapp.com",
@@ -10,9 +10,9 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
-// declaring variables 
 var database = firebase.database();
+// declaring variables 
+
 var name = $("#nameInput").val().trim();
 var role = $("#roleInput").val().trim();
 var startDate = $("#startDateInput").val().trim();
@@ -32,12 +32,18 @@ $("#submit").on("click", function (event) {
     var role = $("#roleInput").val().trim();
     var startDate = $("#startDateInput").val().trim();
     var monthlyRate = $("#ropInput").val().trim();
-    database.ref().push({
+    database.ref().set({
         name: name,
         role: role,
         startDate: startDate,
         monthlyRate: monthlyRate,
-        dateAdded: timestamp.database.ServerValue.TIMESTAMP
+        // dateAdded: timestamp.database.ServerValue.TIMESTAMP
       });
 })
-database.ref().on("child_added", function(childSnapshot){},{})
+database.ref().orderByChild("dateAdded").limitToLast(5).on("child_added", function(childSnapshot){
+    console.log(childSnapshot)
+},
+{
+
+})
+});
