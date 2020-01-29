@@ -10,6 +10,8 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+// declaring variables 
 var database = firebase.database();
 var name = $("#nameInput").val().trim();
 var role = $("#roleInput").val().trim();
@@ -18,10 +20,12 @@ var monthsWorked;
 var monthlyRate = $("#ropInput").val().trim();
 var totalBilled;
 //   function takes in name role start date and monthly rate 
-// adds to firebase 
-// function to push data to list 
+ 
+
 // function to calculate the months worked
-//  and total billed 
+//  and total billed
+
+// function to push data to list 
 $("#submit").on("click", function (event) {
     event.preventDefault();
     var name = $("#nameInput").val().trim();
@@ -34,5 +38,5 @@ $("#submit").on("click", function (event) {
         startDate: startDate,
         monthlyRate: monthlyRate
       });
-}
-
+})
+database.ref().on("child_added", function(childSnapshot){},{})
